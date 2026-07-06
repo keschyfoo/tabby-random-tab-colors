@@ -1,9 +1,12 @@
 # tabby-random-tab-colors
 
+[![Build status](https://github.com/OWNER/tabby-random-tab-colors/actions/workflows/build.yml/badge.svg)](.github/workflows/build.yml)
+
 A [Tabby](https://tabby.sh) plugin that automatically assigns a random color from a curated vibrant palette to every newly opened tab.
 
 - Terminal, SSH, serial, web, and settings tabs all get a random color on open.
 - Tabs that already have a color (set by a profile, restored from a saved session, or picked manually via the right-click menu) keep their existing color.
+- Consecutive tabs avoid perceptually similar hues (configurable via `randomTabColors.minHueDelta`).
 - A toggle in `Settings → Plugins → Random tab colors` lets you disable the behavior without uninstalling.
 
 ## Install (user)

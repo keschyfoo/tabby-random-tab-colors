@@ -1,0 +1,33 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Build & verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+      - name: Verify bundle
+        run: |
+          test -f dist/index.js
+          test -f dist/index.js.map
+          test -f typings/index.d.ts
+          size=$(wc -c < dist/index.js)
+          test "$size" -gt 5000
+          grep -q 'RandomTabColorsModule' dist/index.js
+          grep -q 'design:paramtypes' dist/index.js
+          grep -q 'PASTEL_COLORS' dist/index.js
+          echo "Bundle OK ($(($size / 1024)) KB)"
