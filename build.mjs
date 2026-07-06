@@ -1,10 +1,21 @@
 import * as esbuild from 'esbuild'
+import * as url from 'url'
+import { execSync } from 'child_process'
+import { rmSync } from 'fs'
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url))
 const watch = process.argv.includes('--watch')
 
+function compile () {
+    execSync('node_modules/.bin/tsc -p tsconfig.build.json', {
+        stdio: 'inherit',
+        cwd: __dirname,
+    })
+}
+
 /** @type {esbuild.BuildOptions} */
-const config = {
-    entryPoints: ['src/index.ts'],
+const bundle = {
+    entryPoints: ['build/index.js'],
     outfile: 'dist/index.js',
     bundle: true,
     format: 'cjs',
@@ -23,9 +34,12 @@ const config = {
 }
 
 if (watch) {
-    const ctx = await esbuild.context(config)
+    compile()
+    const ctx = await esbuild.context(bundle)
     await ctx.watch()
     console.log('Watching for changes...')
 } else {
-    await esbuild.build(config)
+    rmSync('build', { recursive: true, force: true })
+    compile()
+    await esbuild.build(bundle)
 }

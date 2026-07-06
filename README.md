@@ -17,7 +17,9 @@ yarn install
 yarn build
 ```
 
-Produces `dist/index.js` (3 KB CJS bundle) and `typings/*.d.ts` (TypeScript declarations). Pure-esbuild + tsc, no webpack.
+Produces `dist/index.js` (one CJS bundle) and `typings/*.d.ts` (TypeScript declarations). Two-step build:
+1. `tsc -p tsconfig.build.json` compiles `src/` → `build/`, emitting full decorator metadata that Angular's JIT runtime needs (`__metadata("design:paramtypes", ...)`)
+2. `esbuild` bundles `build/index.js` → `dist/index.js`, with `@angular/*`, `rxjs`, `tabby-*`, etc. externalized for the host app to provide
 
 ## Install (local development build)
 
