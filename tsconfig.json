@@ -1,0 +1,15 @@
+{
+  "extends": "../tabby/tsconfig.json",
+  "exclude": ["node_modules", "dist"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "preserveValueImports": true,
+    "paths": {
+      "tabby-*": ["../../tabby/tabby-*/src"],
+      "*": [
+        "../node_modules/*",
+        "../../tabby/node_modules/*"
+      ]
+    }
+  }
+}
