@@ -17,23 +17,22 @@ yarn install
 yarn build
 ```
 
-This produces `dist/index.js` and `typings/index.d.ts`.
+Produces `dist/index.js` (3 KB CJS bundle) and `typings/*.d.ts` (TypeScript declarations). Pure-esbuild + tsc, no webpack.
+
+## Install (local development build)
+
+```bash
+# build, then symlink into Tabby's user plugins directory
+yarn build
+mkdir -p "$HOME/Library/Application Support/tabby/plugins/node_modules"
+ln -s "$(pwd)" "$HOME/Library/Application Support/tabby/plugins/node_modules/tabby-random-tab-colors"
+```
+
+Restart Tabby. To uninstall, remove the symlink.
 
 ## Development
 
-The plugin lives outside the Tabby repo, so it references Tabby via relative paths. Start Tabby with the `TABBY_PLUGINS` environment variable pointing at the plugin directory:
-
-```bash
-# shell 1 — rebuild on file changes
-cd /Users/kevin/Projects/tabby-random-tab-colors
-yarn watch
-
-# shell 2 — run Tabby with the plugin loaded
-cd /Users/kevin/Projects/tabby
-TABBY_DEV=1 TABBY_PLUGINS=/Users/kevin/Projects/tabby-random-tab-colors yarn start
-```
-
-Restart Tabby after each rebuild (there is no live reload for external plugins).
+For iteration, run `yarn watch` in the plugin directory and rebuild via `yarn build` after changes — then restart Tabby to pick up the new bundle (no live reload for external plugins).
 
 ## Files
 

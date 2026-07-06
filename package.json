@@ -1,21 +1,41 @@
 {
   "name": "tabby-random-tab-colors",
-  "version": "1.0.0",
-  "description": "Automatically assign a random tab color from a curated pastel palette to every newly opened Tabby tab.",
+  "version": "0.1.0",
+  "description": "Automatically assigns a random tab color from a curated vibrant palette to every newly opened Tabby tab.",
   "keywords": [
     "tabby-plugin"
   ],
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",
   "scripts": {
-    "build": "yarn build:typings && webpack --progress --color",
+    "build": "yarn build:typings && node build.mjs",
     "build:typings": "tsc -p tsconfig.typings.json",
-    "watch": "webpack --progress --color --watch"
+    "watch": "node build.mjs --watch"
   },
   "files": [
     "dist",
     "typings"
   ],
+  "peerDependencies": {
+    "tabby-core": "*",
+    "tabby-terminal": "*"
+  },
+  "devDependencies": {
+    "@angular/common": "^15.2.6",
+    "@angular/core": "^15.2.6",
+    "@angular/forms": "^15.2.6",
+    "@angular/platform-browser": "^15.2.6",
+    "@ng-bootstrap/ng-bootstrap": "^14.1.0",
+    "esbuild": "^0.21.0",
+    "rxjs": "^7.8.0",
+    "tabby-core": "1.0.231-nightly.0",
+    "tabby-terminal": "1.0.231-nightly.0",
+    "typescript": "^4.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.pustekuchen.xyz:Keschy/tabby-random-tab-colors.git"
+  },
   "author": "Kevin",
   "license": "MIT"
 }
