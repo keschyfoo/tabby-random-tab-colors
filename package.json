@@ -34,7 +34,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.pustekuchen.xyz:Keschy/tabby-random-tab-colors.git"
+    "url": "git@github.com:keschyfoo/tabby-random-tab-colors.git"
   },
   "author": "Kevin",
   "license": "MIT"

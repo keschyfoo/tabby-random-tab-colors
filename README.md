@@ -1,6 +1,6 @@
 # tabby-random-tab-colors
 
-[![Build status](https://github.com/OWNER/tabby-random-tab-colors/actions/workflows/build.yml/badge.svg)](.github/workflows/build.yml)
+[![Build status](https://github.com/keschyfoo/tabby-random-tab-colors/actions/workflows/build.yml/badge.svg)](.github/workflows/build.yml)
 
 A [Tabby](https://tabby.sh) plugin that automatically assigns a random color from a curated vibrant palette to every newly opened tab.
 
